@@ -1,6 +1,10 @@
-version: '3.8'
-
 services:
+
+  common-utils:
+    build: ./common-utils
+    container_name: restaurant-common-utils
+    networks:
+      - restaurant-network
 
   eureka-service:
     build: ./eureka-service

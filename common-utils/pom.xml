@@ -10,6 +10,7 @@
     </parent>
     <groupId>com.restaurant</groupId>
     <artifactId>common-utils</artifactId>
+    <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>common-utils</name>
     <url>http://maven.apache.org</url>

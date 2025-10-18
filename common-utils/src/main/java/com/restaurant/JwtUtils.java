@@ -25,7 +25,7 @@ public class JwtUtils {
         this.publicKey = loadPublicKey("keys/public.pem");
     }
 
-    private PrivateKey loadPrivateKey(String resourcePath) throws Exception {
+    public PrivateKey loadPrivateKey(String resourcePath) throws Exception {
         InputStream inputStream = new ClassPathResource(resourcePath).getInputStream();
         String key = new String(inputStream.readAllBytes())
                 .replaceAll("-----BEGIN (.*)-----", "")

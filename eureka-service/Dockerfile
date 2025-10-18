@@ -2,9 +2,9 @@ FROM openjdk:21-jdk-slim
 
 WORKDIR /app
 
-COPY target/eureka-service-1.0.0.jar app.jar
+COPY target/eureka-service-*.jar app.jar
 
-EXPOSE 8080
+EXPOSE 8761
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
