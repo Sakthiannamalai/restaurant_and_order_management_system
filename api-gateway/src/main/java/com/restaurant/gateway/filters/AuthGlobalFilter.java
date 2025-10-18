@@ -3,7 +3,6 @@ package com.restaurant.gateway.filters;
 import com.restaurant.JwtUtils;
 import io.jsonwebtoken.Claims;
 import jakarta.ws.rs.core.HttpHeaders;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -16,7 +15,6 @@ import reactor.core.publisher.Mono;
 @Component
 public class AuthGlobalFilter implements GlobalFilter, Ordered {
 
-    @Autowired
     private JwtUtils jwtUtils;
 
     @Override
