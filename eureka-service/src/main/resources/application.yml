@@ -1,0 +1,31 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: eureka-server
+  cloud:
+    compatibility-verifier:
+      enabled: false
+
+
+# Eureka Server configuration
+eureka:
+  client:
+    register-with-eureka: false   # The server does not register itself
+    fetch-registry: false          # The server does not fetch other services
+  server:
+    wait-time-in-ms-when-sync-empty: 0
+
+# Optional: enable the management endpoints (for monitoring)
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+# Logging level for Eureka
+logging:
+  level:
+    org.springframework.cloud.netflix.eureka: INFO
+

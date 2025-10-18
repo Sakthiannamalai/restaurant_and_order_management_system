@@ -1,0 +1,134 @@
+version: '3.8'
+
+services:
+
+  eureka-service:
+    build: ./eureka-service
+    container_name: restaurant-eureka-service
+    ports:
+      - "8761:8761"
+    networks:
+      - restaurant-network
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: restaurant-api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      - eureka-service
+    networks:
+      - restaurant-network
+
+  auth-service:
+    build: ./auth-service
+    container_name: restaurant-auth-service
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5432/restaurant_auth
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: root
+      JWT_SECRET: restaurant-jwt-secret-key-2024
+      JWT_EXPIRATION: 86400000
+    depends_on:
+      - eureka-service
+    networks:
+      - restaurant-network
+
+  tenant-service:
+    build: ./tenant-service
+    container_name: restaurant-tenant-service
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5432/restaurant_tenant
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      - eureka-service
+    networks:
+      - restaurant-network
+
+  menu-service:
+    build: ./menu-service
+    container_name: restaurant-menu-service
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5432/restaurant_menu
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      - eureka-service
+    networks:
+      - restaurant-network
+
+  table-service:
+    build: ./table-service
+    container_name: restaurant-table-service
+    ports:
+      - "8084:8084"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5432/restaurant_table
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      - eureka-service
+    networks:
+      - restaurant-network
+
+  order-service:
+    build: ./order-service
+    container_name: restaurant-order-service
+    ports:
+      - "8085:8085"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5432/restaurant_order
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      - eureka-service
+    networks:
+      - restaurant-network
+
+  billing-service:
+    build: ./billing-service
+    container_name: restaurant-billing-service
+    ports:
+      - "8086:8086"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5432/restaurant_billing
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      - eureka-service
+    networks:
+      - restaurant-network
+
+  kitchen-service:
+    build: ./kitchen-service
+    container_name: restaurant-kitchen-service
+    ports:
+      - "8087:8087"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5432/restaurant_kitchen
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      - eureka-service
+    networks:
+      - restaurant-network
+
+networks:
+  restaurant-network:
+    driver: bridge

@@ -1,0 +1,36 @@
+# Maven target directories
+**/target/
+
+# Logs
+*.log
+
+# IDE settings
+.idea/
+*.iml
+.vscode/
+*.classpath
+*.project
+*.settings/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Dependency management
+*.jar
+*.war
+*.ear
+
+# Environment/config
+.env
+*.local
+application-*.yml
+application-*.properties
+
+# Build output
+out/
+build/
+
+# Node / React frontend (if included)
+frontend/node_modules/
+frontend/build/
