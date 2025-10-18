@@ -1,6 +1,6 @@
 package com.restaurant.gateway.filters;
 
-import com.restaurent.common.utils.config.JwtUtils;
+import com.restaurant.JwtUtils;
 import io.jsonwebtoken.Claims;
 import jakarta.ws.rs.core.HttpHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
